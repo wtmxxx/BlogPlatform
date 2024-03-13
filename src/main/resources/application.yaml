@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog_platform
+    username: root
+    password: 1005
+  task:
+    execution:
+      thread-name-prefix: UserExecutor-
+      pool:
+        core-size: 10
+        max-size: 20
+        queue-capacity: 1000
+        keep-alive: 60s
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 1024MB
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 1005
+      database: 0
+  mail:
+    host: smtp.qq.com
+    # smtp的指定端口 使用465要将protocol改为smtps
+    port: 465
+    username: wotemo@qq.com
+    password: sievcqsdeekwbddh
+    # 协议 默认就是smtp
+    protocol: smtps
+    # 编码格式 默认就是utf-8
+    default-encoding: utf-8
+    # 设置开启ssl
+    properties:
+      mail:
+        smtp:
+          from: wotemo@qq.com
+          ssl:
+            enable: true
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+
+jwt:
+  secret-key: RGa0cqPoSZlUuefLhkOdTPBLGlIn+4nSQOU9R6uTUUg=
+  ttl: 43200000
+
+leancloud:
+  initialization:
+    app-id: XvzTrvFOLxE5Zpq34jcDvh7A-MdYXbMMI
+    app-key: Xub8WClpXuytWh5eBAVWrqx1
+    server-url: https://bpserver.wotemo.com
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug

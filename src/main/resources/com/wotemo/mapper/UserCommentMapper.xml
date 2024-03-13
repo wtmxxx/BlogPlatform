@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wotemo.mapper.UserCommentMapper">
+    <select id="getArticleComments" resultType="com.wotemo.pojo.UserComment">
+        select id, article_id, user_id, content, parent_id, create_time
+        from user_comment
+        where article_id = #{id}
+          and parent_id IS NULL
+        order by create_time desc
+        limit #{skip}, #{num}
+    </select>
+    <select id="getCommentComments" resultType="com.wotemo.pojo.UserComment">
+        select id, article_id, user_id, content, parent_id, create_time
+        from user_comment
+        where parent_id = #{id}
+        order by create_time desc
+        limit #{skip}, #{num}
+    </select>
+</mapper>

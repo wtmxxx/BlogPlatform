@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wotemo.mapper.UserLikeMapper">
+    <update id="setUserLike">
+        INSERT INTO user_like
+            (user_id, article_id, create_time)
+        VALUES (#{userId}, #{articleId}, now())
+    </update>
+    <delete id="deleteLike">
+        delete from user_like
+        where user_id = #{userId} and article_id = #{articleId}
+    </delete>
+    <select id="getUserLikes" resultType="com.wotemo.pojo.UserLike">
+        select user_id, article_id, create_time
+        from user_like
+        where user_id=#{id}
+        order by create_time desc
+        limit #{skip}, #{num}
+    </select>
+    <select id="getArticleLikes" resultType="com.wotemo.pojo.UserLike">
+        select user_id, article_id, create_time
+        from user_like
+        where article_id=#{id}
+        order by create_time desc
+        limit #{skip}, #{num}
+    </select>
+    <select id="getUserLikesCount" resultType="java.lang.Integer">
+        select count(*)
+        from user_like
+        where user_id = #{id}
+    </select>
+    <select id="getArticleLikesCount" resultType="java.lang.Integer">
+        select count(*)
+        from user_like
+        where article_id = #{id}
+    </select>
+    <select id="getLike" resultType="com.wotemo.pojo.UserLike">
+        select user_id, article_id, create_time
+        from user_like
+        where user_id = #{userId} and article_id=#{articleId}
+    </select>
+</mapper>

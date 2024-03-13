@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wotemo.mapper.UserArticleMapper">
+    <update id="setArticle">
+        INSERT INTO user_article
+            (id, author, title, content, dislike, create_time, update_time)
+        VALUES
+            (#{id}, #{userId}, #{title}, #{content}, 0, now(), now());
+    </update>
+    <update id="updateUserArticle">
+        UPDATE user_article
+        <set>
+            <if test="title!=null">
+                title = #{title}
+            </if>
+            <if test="content!=null">
+                content = #{content}
+            </if>
+            <if test="dislike!=null">
+                dislike = #{dislike}
+            </if>
+            update_time = now()
+        </set>
+        WHERE id = #{id};
+    </update>
+    <select id="getArticle" resultType="com.wotemo.pojo.UserArticle">
+        select id, author, title, content, dislike, create_time, update_time
+        from user_article
+        where id = #{id}
+    </select>
+</mapper>
