@@ -13,7 +13,23 @@
 
     <update id="updateAddress">
         UPDATE user_address
-        SET province = #{province}, city = #{city}, full_address = #{fullAddress}
-        WHERE id = #{id};
+        <set>
+            <if test="province!=null">
+                province = #{province},
+            </if>
+            <if test="city!=null">
+                city = #{city},
+            </if>
+            <if test="fullAddress!=null">
+                full_address = #{fullAddress},
+            </if>
+        </set>
+        WHERE id = #{addressId};
     </update>
+    <delete id="deleteAddress">
+        delete from user_address where id = #{id}
+    </delete>
+    <select id="getUserIdByAddressId" resultType="java.lang.String">
+        select user_id from user_info where address = #{addressId}
+    </select>
 </mapper>

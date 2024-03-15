@@ -13,4 +13,8 @@ public interface UserLikeService {
     boolean setUserLike(HttpServletRequest request, String userId, String articleId) throws Exception;
 
     boolean getLike(String userId, String articleId);
+
+    void cancelledLike(String userId);
+
+    void deleteArticleLikes(String articleId);
 }

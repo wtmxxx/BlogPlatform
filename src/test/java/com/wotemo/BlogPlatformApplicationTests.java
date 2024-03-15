@@ -49,8 +49,9 @@ class BlogPlatformApplicationTests {
 
     @Test
     void testCheckCodeServiceImpl(){
-        checkCodeService.addCode(String.valueOf(4),"11488",1800);
-        System.out.println(checkCodeService.checkCode(String.valueOf(3),"44568"));
+//        checkCodeService.addCode(String.valueOf(4),"11488",1800);
+//        System.out.println(checkCodeService.checkCode("7c19a422-04ea-47ec-ae36-5ffa7763249d","066294", "bestman@88.com"));
+        checkCodeService.deleteCode("7c19a422-04ea-47ec-ae36-5ffa7763249d");
     }
 
     @Autowired

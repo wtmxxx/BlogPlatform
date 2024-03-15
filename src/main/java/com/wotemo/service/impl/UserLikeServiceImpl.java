@@ -38,6 +38,17 @@ public class UserLikeServiceImpl implements UserLikeService {
     }
 
     @Override
+    public void cancelledLike(String userId) {
+        userLikeMapper.cancelledLike(userId);
+    }
+
+    @Override
+    public void deleteArticleLikes(String articleId) {
+        userLikeMapper.deleteArticleLikes(articleId);
+    }
+
+
+    @Override
     public Integer getLikesCount(String obj, String id) throws Exception {
         if(obj.equals("user")){
             return userLikeMapper.getUserLikesCount(id);

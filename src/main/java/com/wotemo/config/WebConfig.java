@@ -23,6 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/upload")
                 .excludePathPatterns("/logout/**")
                 .excludePathPatterns("/verify-code")
+                .excludePathPatterns("/remove/verify-code")
                 .excludePathPatterns("/get/**");
     }
 }

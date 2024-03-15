@@ -1,7 +1,9 @@
 package com.wotemo.controller;
 
 import com.wotemo.pojo.Result;
+import com.wotemo.pojo.User;
 import com.wotemo.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,29 @@ public class UserController {
     }
 
     @PostMapping("/update/user")
-    public Result updateUser(@RequestParam String username, @RequestParam String email) throws Exception {
+    public Result updateUser(HttpServletRequest request,
+                             @RequestParam String id,
+                             @RequestParam String username,
+                             @RequestParam String email,
+                             @RequestParam String codeId,
+                             @RequestParam String code) throws Exception {
         log.info("更新用户");
-        return Result.success(userService.updateUser(username, email));
+        User user = userService.updateUser(request, id, username, email, codeId, code);
+        if (user != null) {
+            return Result.success(user);
+        } else {
+            return Result.error("身份验证失败");
+        }
     }
+
+    @PostMapping("/set/administrator")
+    public Result setAdministrator(HttpServletRequest request, @RequestParam String id) throws Exception {
+        log.info("设置管理员");
+        if (userService.setAdministrator(request, id)) {
+            return Result.success(null, "管理员设置成功！");
+        } else {
+            return Result.error("管理员设置失败！");
+        }
+    }
+
 }

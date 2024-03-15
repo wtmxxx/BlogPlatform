@@ -12,4 +12,8 @@ public interface UserPasswordMapper {
     boolean updatePasswordByUsername(String username, String newPassword);
 
     boolean updatePasswordByEmail(String email, String password);
+
+    void deletePassword(String userId);
+
+    void updateUsernameEmail(String userId, String username, String email);
 }

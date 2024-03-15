@@ -30,13 +30,13 @@ public class UserInfoController {
 
     @PostMapping("/update/userinfo")
     public Result updateAddress(HttpServletRequest request,
-                                @RequestParam String id,
+                                @RequestParam String userId,
                                 String nickname,
                                 String avatar,
                                 LocalDate birthday,
                                 String profile) throws Exception {
         log.info("更新用户信息");
-        UserInfo userInfo = userInfoService.updateUserInfo(request, id, nickname, avatar, birthday, profile);
+        UserInfo userInfo = userInfoService.updateUserInfo(request, userId, nickname, avatar, birthday, profile);
         if (userInfo != null) {
             return Result.success(userInfo);
         } else {

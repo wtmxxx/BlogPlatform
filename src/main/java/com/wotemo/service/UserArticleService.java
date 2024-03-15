@@ -13,4 +13,10 @@ public interface UserArticleService {
     UserArticle getArticle(String id);
 
     UserArticle updateArticle(HttpServletRequest request, String id, String title, String content, Integer dislike) throws Exception;
+
+    boolean deleteArticle(HttpServletRequest request, String id) throws Exception;
+
+    List<UserArticle> getArticlesByUserId(String userId, Integer skip, Integer num);
+
+    void CancelledArticle(String articleId);
 }

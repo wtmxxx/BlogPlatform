@@ -39,11 +39,16 @@ public class UserPasswordServiceImpl implements UserPasswordService {
     @Override
     public boolean updatePasswordByEmail(String email, String password, String codeId, String code) {
         log.info("Service [updatePasswordByEmail] 邮箱为: {}, 尝试修改密码", email);
-        if (checkCodeService.checkCode(codeId, code)) {
+        if (checkCodeService.checkCode(codeId, code, email)) {
             return userPasswordMapper.updatePasswordByEmail(email, password);
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void updateUsernameEmail(String userId, String username, String email) {
+        userPasswordMapper.updateUsernameEmail(userId, username, email);
     }
 
 
@@ -51,5 +56,11 @@ public class UserPasswordServiceImpl implements UserPasswordService {
     public void setPassword(String userId, String username, String email, String password) {
         log.info("Service [setPassword] 用户名为: {}, 尝试设置密码", username);
         userPasswordMapper.setPassword(userId, username, email, password);
+    }
+
+    @Override
+    public void deletePassword(String userId) {
+        log.info("删除用户密码");
+        userPasswordMapper.deletePassword(userId);
     }
 }

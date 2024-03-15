@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserAddressController {
     private final UserAddressService userAddressService;
+
     @Autowired
-    public UserAddressController(UserAddressService userAddressService){
+    public UserAddressController(UserAddressService userAddressService) {
         this.userAddressService = userAddressService;
     }
 
@@ -28,12 +29,12 @@ public class UserAddressController {
 
     @PostMapping("/update/address")
     public Result updateAddress(HttpServletRequest request,
-                                @RequestParam String id,
-                                @RequestParam String province,
-                                @RequestParam String city,
-                                @RequestParam(required = false) String fullAddress) throws Exception {
+                                @RequestParam String addressId,
+                                String province,
+                                String city,
+                                String fullAddress) throws Exception {
         log.info("更新用户地址");
-        UserAddress userAddress = userAddressService.updateAddress(request, id, province, city, fullAddress);
+        UserAddress userAddress = userAddressService.updateAddress(request, addressId, province, city, fullAddress);
         if (userAddress != null) {
             return Result.success(userAddress);
         } else {

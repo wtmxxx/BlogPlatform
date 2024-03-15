@@ -12,12 +12,21 @@
         delete from user_like
         where user_id = #{userId} and article_id = #{articleId}
     </delete>
+    <delete id="deleteArticleLikes">
+        delete from user_like
+        where article_id = #{articleId}
+    </delete>
+    <update id="cancelledLike">
+        update user_like
+        set user_id = 'CANCELLED'
+        where user_id = #{userId}
+    </update>
     <select id="getUserLikes" resultType="com.wotemo.pojo.UserLike">
         select user_id, article_id, create_time
         from user_like
         where user_id=#{id}
         order by create_time desc
-        limit #{skip}, #{num}
+        <if test="skip!=null and num!=null">limit #{skip}, #{num}</if>
     </select>
     <select id="getArticleLikes" resultType="com.wotemo.pojo.UserLike">
         select user_id, article_id, create_time

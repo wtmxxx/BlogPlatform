@@ -43,4 +43,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfoMapper.setUserInfo(userId, nickname, avatar, birthday, address, profile);
 //        return getUserInfo(userId);
     }
+
+    @Override
+    public void deleteUserInfo(String userId) throws Exception {
+        userInfoMapper.deleteUserInfo(userId);
+    }
 }

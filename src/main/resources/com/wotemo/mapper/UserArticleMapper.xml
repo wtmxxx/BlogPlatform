@@ -13,21 +13,38 @@
         UPDATE user_article
         <set>
             <if test="title!=null">
-                title = #{title}
+                title = #{title},
             </if>
             <if test="content!=null">
-                content = #{content}
+                content = #{content},
             </if>
             <if test="dislike!=null">
-                dislike = #{dislike}
+                dislike = #{dislike},
             </if>
-            update_time = now()
+            <if test="title!=null and content!=null and dislike!=null">
+                update_time = now(),
+            </if>
         </set>
         WHERE id = #{id};
+    </update>
+    <delete id="deleteArticle">
+        delete from user_article where id = #{id}
+    </delete>
+    <update id="cancelledArticle">
+        update user_article
+        set author = 'CANCELLED'
+        where id = #{articleId}
     </update>
     <select id="getArticle" resultType="com.wotemo.pojo.UserArticle">
         select id, author, title, content, dislike, create_time, update_time
         from user_article
         where id = #{id}
+    </select>
+    <select id="getArticlesByUserId" resultType="com.wotemo.pojo.UserArticle">
+        select id, author, title, content, dislike, create_time, update_time
+        from user_article
+        where author = #{userId}
+        order by create_time desc
+        <if test="skip!=null and num!=null">limit #{skip}, #{num}</if>
     </select>
 </mapper>

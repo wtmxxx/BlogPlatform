@@ -1,12 +1,8 @@
 package com.wotemo.service.impl;
 
-import com.wotemo.pojo.User;
-import com.wotemo.pojo.UserAddress;
-import com.wotemo.pojo.UserPassword;
+import com.wotemo.pojo.*;
 import com.wotemo.service.*;
 import com.wotemo.utils.JwtUtils;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwt;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -30,14 +24,22 @@ public class AuthServiceImpl implements AuthService {
     private final UserInfoService userInfoService;
     private final UserService userService;
     private final UserPasswordService userPasswordService;
+    private final IdentityService identityService;
+    private final UserLikeService userLikeService;
+    private final UserArticleService userArticleService;
+    private final UserCommentService userCommentService;
     @Autowired
-    public AuthServiceImpl(RedisTemplate<String, String> redisTemplate, CheckCodeService checkCodeService, UserAddressService userAddressService, UserInfoService userInfoService, UserService userService, UserPasswordService userPasswordService){
+    public AuthServiceImpl(RedisTemplate<String, String> redisTemplate, CheckCodeService checkCodeService, UserAddressService userAddressService, UserInfoService userInfoService, UserService userService, UserPasswordService userPasswordService, IdentityService identityService, UserLikeService userLikeService, UserArticleService userArticleService, UserCommentService userCommentService){
         this.redisTemplate = redisTemplate;
         this.checkCodeService = checkCodeService;
         this.userAddressService = userAddressService;
         this.userInfoService = userInfoService;
         this.userService = userService;
         this.userPasswordService = userPasswordService;
+        this.identityService = identityService;
+        this.userLikeService = userLikeService;
+        this.userArticleService = userArticleService;
+        this.userCommentService = userCommentService;
     }
 
     @Value("${jwt.secret-key}")
@@ -74,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
             throw new Exception("缺失验证码");
         }
         UserPassword userPassword = userPasswordService.getPassword(null, email);
-        if(checkCodeService.checkCode(codeId, code)){
+        if(checkCodeService.checkCode(codeId, code, email)){
             JwtUtils jwtUtils = new JwtUtils();
             jwtUtils.setSECRET_KEY(SECRET_KEY);
             System.out.println(jwtUtils.getSECRET_KEY());
@@ -98,10 +100,10 @@ public class AuthServiceImpl implements AuthService {
     public String register(String username, String email, String password,
                            String nickname, String avatar, LocalDate birthday, String profile,
                            String codeId, String code,
-                           String province, String city, String full_address) throws Exception {
+                           String province, String city, String fullAddress) throws Exception {
         log.info("用户名为: {}, 尝试注册账号", username);
-        if(checkCodeService.checkCode(codeId, code)){
-            UserAddress userAddress = userAddressService.setAddress(province, city, full_address);
+        if(checkCodeService.checkCode(codeId, code, email)){
+            UserAddress userAddress = userAddressService.setAddress(province, city, fullAddress);
             User user = userService.setUser(username, email);
             userInfoService.setUserInfo(user.getId(), nickname, avatar, birthday, userAddress.getId(), profile);
             userPasswordService.setPassword(user.getId(), user.getUsername(), user.getEmail(), password);
@@ -114,6 +116,36 @@ public class AuthServiceImpl implements AuthService {
             return jwt;
         } else {
             return null;
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean removeAccount(HttpServletRequest request, String username, String password, String email, String codeId, String code) throws Exception {
+        if (!checkCodeService.checkCode(codeId, code, email)) {
+            throw new Exception("验证码错误");
+        }
+
+        User user = userService.getUser(null, username, null);
+        String userId = user.getId();
+        UserInfo userInfo = userInfoService.getUserInfo(userId);
+        List<UserArticle> articles = userArticleService.getArticlesByUserId(userId, null, null);
+        if (identityService.check(request, userId, IdentityService.ById)) {
+            userAddressService.deleteAddress(userInfo.getAddress());
+            userInfoService.deleteUserInfo(userId);
+            userPasswordService.deletePassword(userId);
+            userLikeService.cancelledLike(userId);
+            userCommentService.cancelledComment(userId);
+            for (UserArticle article : articles) {
+                String articleId = article.getId();
+                userLikeService.deleteArticleLikes(articleId);
+                userCommentService.deleteArticleComments(articleId);
+                userArticleService.CancelledArticle(articleId);
+            }
+            userService.deleteUser(userId);
+            return true;
+        } else {
+            return false;
         }
     }
 

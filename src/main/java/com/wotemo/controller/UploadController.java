@@ -15,14 +15,13 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @RestController
 public class UploadController {
+    private final LeanCloudUtils leanCloudUtils = new LeanCloudUtils();
     @Value("${leancloud.initialization.app-id}")
     private String appId;
     @Value("${leancloud.initialization.app-key}")
     private String appKey;
     @Value("${leancloud.initialization.server-url}")
     private String serverUrl;
-
-    private final LeanCloudUtils leanCloudUtils = new LeanCloudUtils();
 
     @PostMapping("/upload")
     public Result upload(MultipartFile file) throws Exception {

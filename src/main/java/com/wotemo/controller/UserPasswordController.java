@@ -12,34 +12,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserPasswordController {
     private final UserPasswordService userPasswordService;
+
     @Autowired
-    public UserPasswordController(UserPasswordService userPasswordService){
+    public UserPasswordController(UserPasswordService userPasswordService) {
         this.userPasswordService = userPasswordService;
     }
-//    @PostMapping("/set/password")
-//    public Result setPassword(String username, String email){
-//        userPasswordService.setPassword(username, email);
-//        return Result.success(null, "密码设置成功");
-//    }
+// @PostMapping("/set/password")
+// public Result setPassword(String username, String email){
+//     userPasswordService.setPassword(username, email);
+//     return Result.success(null, "密码设置成功");
+// }
 
     @PostMapping("/update/password/username")
-    public Result updatePasswordByUsername(@RequestParam String username, @RequestParam String oldPassword, @RequestParam String newPassword){
+    public Result updatePasswordByUsername(@RequestParam String username, @RequestParam String oldPassword, @RequestParam String newPassword) {
         log.info("用户: {}, 尝试修改密码", username);
         if (userPasswordService.updatePasswordByUsername(username, oldPassword, newPassword)) {
             return Result.success(null, "密码修改成功");
         } else {
-            return Result.error( "密码修改失败");
+            return Result.error("密码修改失败");
         }
 
     }
 
     @PostMapping("/update/password/email")
-    public Result updatePasswordByEmail(@RequestParam String email, @RequestParam String password, @RequestParam String codeId, @RequestParam String code){
+    public Result updatePasswordByEmail(@RequestParam String email, @RequestParam String password, @RequestParam String codeId, @RequestParam String code) {
         log.info("邮箱: {}, 尝试修改密码", email);
         if (userPasswordService.updatePasswordByEmail(email, password, codeId, code)) {
             return Result.success(null, "密码修改成功");
         } else {
-            return Result.error( "密码修改失败");
+            return Result.error("密码修改失败");
         }
     }
 }

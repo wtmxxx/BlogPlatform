@@ -3,7 +3,6 @@ package com.wotemo.mapper;
 import com.wotemo.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -13,5 +12,9 @@ public interface UserMapper {
 
     public void setUser(String id, String username, String email);
 
-    public void updateUser(String username, String email);
+    public void updateUser(String id, String username, String email);
+
+    void deleteUser(String userId);
+
+    void setAdministrator(String id, short isAdministrator);
 }

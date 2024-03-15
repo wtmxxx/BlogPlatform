@@ -11,5 +11,9 @@ public interface UserAddressMapper {
 
     public void setAddress(String id, String province, String city, String fullAddress);
 
-    public void updateAddress(String id, String province, String city, String fullAddress);
+    public void updateAddress(String addressId, String province, String city, String fullAddress);
+
+    void deleteAddress(String id);
+
+    String getUserIdByAddressId(String addressId);
 }

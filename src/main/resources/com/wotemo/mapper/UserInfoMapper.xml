@@ -3,6 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wotemo.mapper.UserInfoMapper">
+    <delete id="deleteUserInfo">
+        delete from user_info where user_id = #{userId}
+    </delete>
     <select id="getUserInfo" resultType="com.wotemo.pojo.UserInfo">
         select user_id, nickname, avatar, birthday, address, profile, create_time, update_time
         from user_info
@@ -12,18 +15,20 @@
         UPDATE user_info
         <set>
         <if test="nickname!=null">
-            nickname = #{nickname}
+            nickname = #{nickname},
         </if>
         <if test="avatar!=null">
-            avatar = #{avatar}
+            avatar = #{avatar},
         </if>
         <if test="birthday!=null">
-            birthday = #{birthday}
+            birthday = #{birthday},
         </if>
         <if test="profile!=null">
-            profile = #{profile}
+            profile = #{profile},
         </if>
-        update_time = now()
+        <if test="nickname!=null or avatar!=null or birthday!=null or profile!=null">
+            update_time = now(),
+        </if>
         </set>
         WHERE user_id = #{userId};
     </update>

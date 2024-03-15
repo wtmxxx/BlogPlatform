@@ -5,6 +5,7 @@ import com.wotemo.mapper.UserAddressMapper;
 import com.wotemo.pojo.UserAddress;
 import com.wotemo.service.IdentityService;
 import com.wotemo.service.UserAddressService;
+import com.wotemo.service.UserInfoService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserAddressServiceImpl implements UserAddressService {
     private final UserAddressMapper userAddressMapper;
     private final IdentityService identityService;
     @Autowired
-    public UserAddressServiceImpl(UserAddressMapper userAddressMapper, IdentityService identityService) {
+    public UserAddressServiceImpl(UserAddressMapper userAddressMapper, IdentityService identityService, UserInfoService userInfoService) {
         this.userAddressMapper = userAddressMapper;
         this.identityService = identityService;
     }
@@ -42,12 +43,23 @@ public class UserAddressServiceImpl implements UserAddressService {
     }
 
     @Override
-    public UserAddress updateAddress(HttpServletRequest request, String id, String province, String city, String fullAddress) throws Exception {
-        if (identityService.check(request, id, IdentityService.ById)) {
-            userAddressMapper.updateAddress(id, province, city, fullAddress);
-            return userAddressMapper.getAddress(id);
+    public UserAddress updateAddress(HttpServletRequest request, String addressId, String province, String city, String fullAddress) throws Exception {
+        String userId = userAddressMapper.getUserIdByAddressId(addressId);
+        if (identityService.check(request, userId, IdentityService.ById)) {
+            userAddressMapper.updateAddress(addressId, province, city, fullAddress);
+            return userAddressMapper.getAddress(addressId);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void deleteAddress(String id) {
+        userAddressMapper.deleteAddress(id);
+    }
+
+    @Override
+    public String getUserIdByAddressId(String addressId) {
+        return userAddressMapper.getUserIdByAddressId(addressId);
     }
 }

@@ -39,10 +39,11 @@ public class CheckCodeServiceImpl implements CheckCodeService {
             int digit = random.nextInt(10); // 生成0-9的随机数
             sb.append(digit);
         }
+        String code = sb + "&" + to;
         String subject = "BlogPlatform邮箱验证";
         String text = "您的验证码为：" + sb + "\n注意：此操作可能会修改您的密码、登录邮箱或绑定手机。客服人员不会向您索要此校验码，请勿泄漏，如非本人操作，请忽略此邮件。";
         emailService.SendEmail(to, subject, text);
-        addCode(uuid, sb.toString(), timeout);
+        addCode(uuid, code, timeout);
         return uuid;
     }
 
@@ -54,13 +55,16 @@ public class CheckCodeServiceImpl implements CheckCodeService {
     }
 
     @Override
-    public boolean checkCode(String id, String code) {
+    public boolean checkCode(String id, String code, String email) {
         log.info("检验ID:{}的验证码是否为:{}", id, code);
-        return Objects.equals(redisTemplate.opsForValue().get(id), code);
+        code += "&" + email;
+        String realCode = redisTemplate.opsForValue().get(id);
+        deleteCode(id);
+        return Objects.equals(realCode, code);
     }
 
     @Override
     public void deleteCode(String id) {
-        redisTemplate.opsForValue().getAndDelete(id);
+        redisTemplate.delete(id);
     }
 }

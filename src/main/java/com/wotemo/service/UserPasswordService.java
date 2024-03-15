@@ -8,5 +8,9 @@ public interface UserPasswordService {
     boolean updatePasswordByUsername(String username, String oldPassword, String newPassword);
     boolean updatePasswordByEmail(String email, String password, String codeId, String code);
 
+    void updateUsernameEmail(String userId, String username, String email);
+
     void setPassword(String userId, String username, String email, String password);
+
+    void deletePassword(String userId);
 }

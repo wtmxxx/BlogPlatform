@@ -21,4 +21,8 @@ public interface UserLikeMapper {
     void setUserLike(String userId, String articleId);
 
     void deleteLike(String userId, String articleId);
+
+    void cancelledLike(String userId);
+
+    void deleteArticleLikes(String articleId);
 }

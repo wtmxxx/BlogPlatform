@@ -6,10 +6,7 @@ import com.wotemo.service.UserArticleService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
@@ -33,6 +30,12 @@ public class UserArticleController {
         return Result.success(userArticleService.getArticle(id));
     }
 
+    @GetMapping("/get/userArticles")
+    public Result getArticlesByUserId(@RequestParam String userId, Integer skip, Integer num){
+        log.info("获取用户文章");
+        return Result.success(userArticleService.getArticlesByUserId(userId, skip, num));
+    }
+
     @PostMapping("/set/article")
     public Result setArticle(HttpServletRequest request,
                              @RequestParam String userId,
@@ -53,6 +56,17 @@ public class UserArticleController {
         UserArticle userArticle = userArticleService.updateArticle(request, id, title, content, dislike);
         if (userArticle != null) {
             return Result.success(userArticle);
+        } else {
+            return Result.error("身份验证失败");
+        }
+    }
+
+    @DeleteMapping("/delete/article")
+    public Result deleteArticle(HttpServletRequest request,
+                                @RequestParam String id) throws Exception {
+        log.info("删除文章");
+        if (userArticleService.deleteArticle(request, id)) {
+            return Result.success();
         } else {
             return Result.error("身份验证失败");
         }

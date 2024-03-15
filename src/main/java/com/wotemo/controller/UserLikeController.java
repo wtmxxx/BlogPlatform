@@ -27,7 +27,7 @@ public class UserLikeController {
 
     @GetMapping("/get/like")
     public Result getLike(String userId, String articleId) throws Exception {
-        log.info("获取用户对文章点赞");
+        log.info("获取用户是否对文章点赞");
         return Result.success(userLikeService.getLike(userId, articleId));
     }
 

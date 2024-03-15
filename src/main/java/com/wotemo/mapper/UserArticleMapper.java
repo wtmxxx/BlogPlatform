@@ -17,4 +17,10 @@ public interface UserArticleMapper {
     UserArticle getArticle(String id);
 
     void updateUserArticle(String id, String title, String content, Integer dislike);
+
+    void deleteArticle(String id);
+
+    List<UserArticle> getArticlesByUserId(String userId, Integer skip, Integer num);
+
+    void cancelledArticle(String articleId);
 }

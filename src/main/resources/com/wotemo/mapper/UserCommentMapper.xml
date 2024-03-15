@@ -3,6 +3,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wotemo.mapper.UserCommentMapper">
+    <update id="setComment">
+        INSERT INTO user_comment
+            (id, article_id, user_id, content, parent_id, create_time)
+        VALUES
+            (#{id}, #{articleId}, #{userId}, #{content}, #{parentId}, now());
+    </update>
+    <delete id="deleteComment">
+        delete from user_comment where id = #{id}
+    </delete>
+    <delete id="deleteArticleComments">
+        delete from user_comment where article_id = #{articleId}
+    </delete>
+    <delete id="cancelledParentUserComment">
+        update user_comment
+        set parent_id = 'CANCELLED' where parent_id = #{userId}
+    </delete>
+    <delete id="deleteCommentByParentId">
+        delete from user_comment
+        where parent_id = #{parentId}
+    </delete>
+    <update id="cancelledUserComment">
+        update user_comment
+        set user_id = 'CANCELLED' where user_id = #{userId}
+    </update>
     <select id="getArticleComments" resultType="com.wotemo.pojo.UserComment">
         select id, article_id, user_id, content, parent_id, create_time
         from user_comment

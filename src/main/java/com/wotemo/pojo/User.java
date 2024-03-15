@@ -13,7 +13,6 @@ public class User {
     private String id;
     private String username;
     private String email;
-    private String userInfo;
     private short isAdministrator;
     private LocalDateTime registrationTime;
     private LocalDateTime updateTime;

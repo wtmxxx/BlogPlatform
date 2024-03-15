@@ -15,4 +15,6 @@ public interface UserInfoMapper {
     public void updateUserInfo(String userId, String nickname, String avatar, LocalDate birthday, String profile);
 
     public void setUserInfo(String userId, String nickname, String avatar, LocalDate birthday, String address, String profile);
+
+    void deleteUserInfo(String userId);
 }

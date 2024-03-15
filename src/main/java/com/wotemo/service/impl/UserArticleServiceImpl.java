@@ -28,6 +28,11 @@ public class UserArticleServiceImpl implements UserArticleService {
     }
 
     @Override
+    public List<UserArticle> getArticlesByUserId(String userId, Integer skip, Integer num) {
+        return userArticleMapper.getArticlesByUserId(userId, skip, num);
+    }
+
+    @Override
     public String setArticle(HttpServletRequest request, String userId, String title, String content) throws Exception {
         if (identityService.check(request, userId, IdentityService.ById)) {
             String id = String.valueOf(UUID.randomUUID());
@@ -45,12 +50,28 @@ public class UserArticleServiceImpl implements UserArticleService {
 
     @Override
     public UserArticle updateArticle(HttpServletRequest request, String id, String title, String content, Integer dislike) throws Exception {
-        String userId = getArticle(id).getId();
+        String userId = getArticle(id).getAuthor();
         if (identityService.check(request, userId, IdentityService.ById)) {
             userArticleMapper.updateUserArticle(id, title, content, dislike);
             return userArticleMapper.getArticle(id);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean deleteArticle(HttpServletRequest request, String id) throws Exception {
+        String userId = getArticle(id).getAuthor();
+        if (identityService.check(request, userId, IdentityService.ById)) {
+            userArticleMapper.deleteArticle(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void CancelledArticle(String articleId) {
+        userArticleMapper.cancelledArticle(articleId);
     }
 }
