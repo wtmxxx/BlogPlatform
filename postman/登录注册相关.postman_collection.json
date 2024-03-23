@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "f205907b-2d3e-44da-a5e8-4da2ee079811",
+		"name": "登录注册相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33030655"
+	},
+	"item": [
+		{
+			"name": "登出",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA1NDk5MzQsImlhdCI6MTcxMDUwNjczNCwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.a3BO8NSHMcX1CPMwXepMUXA62NUvTx_ZgaPQoI9-eD0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发送验证码",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/verify-code?email=iswotemo@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"verify-code"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册账号",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/register?username=bestman&email=iswotemo@gmail.com&password=bestman&nickname=最男人&avatar=https://www.wotemo.com/img/wotemo.jpg&birthday=2023-08-28&profile=我是最男人，哈哈哈&codeId=9c05cc61-b765-4cb8-a784-258ad675c1f0&code=398893&province=上海市&city=上海市&full_address=上海市浦东新区",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "bestman"
+						},
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "bestman"
+						},
+						{
+							"key": "nickname",
+							"value": "最男人"
+						},
+						{
+							"key": "avatar",
+							"value": "https://www.wotemo.com/img/wotemo.jpg"
+						},
+						{
+							"key": "birthday",
+							"value": "2023-08-28"
+						},
+						{
+							"key": "profile",
+							"value": "我是最男人，哈哈哈"
+						},
+						{
+							"key": "codeId",
+							"value": "9c05cc61-b765-4cb8-a784-258ad675c1f0"
+						},
+						{
+							"key": "code",
+							"value": "398893"
+						},
+						{
+							"key": "province",
+							"value": "上海市"
+						},
+						{
+							"key": "city",
+							"value": "上海市"
+						},
+						{
+							"key": "full_address",
+							"value": "上海市浦东新区"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用用户名密码修改密码",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/update/password/username?username=wotemo&oldPassword=wotemo&newPassword=sasasa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"password",
+						"username"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wotemo"
+						},
+						{
+							"key": "oldPassword",
+							"value": "wotemo"
+						},
+						{
+							"key": "newPassword",
+							"value": "sasasa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用邮箱验证码修改密码",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/update/password/email?email=iswotemo@gmail.com&password=wotemo&codeId=9c68f5b1-00cc-4f86-a971-e277a83e6300&code=416081",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"password",
+						"email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "wotemo"
+						},
+						{
+							"key": "codeId",
+							"value": "9c68f5b1-00cc-4f86-a971-e277a83e6300"
+						},
+						{
+							"key": "code",
+							"value": "416081"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "验证码登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/login/checkCode?email=iswotemo@gmail.com&codeId=7bb9d995-bf60-4503-94d1-4a68ffac9597&code=240253",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login",
+						"checkCode"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						},
+						{
+							"key": "codeId",
+							"value": "7bb9d995-bf60-4503-94d1-4a68ffac9597"
+						},
+						{
+							"key": "code",
+							"value": "240253"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "密码登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/login/password?username=wotemo&password=wotemo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login",
+						"password"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wotemo"
+						},
+						{
+							"key": "password",
+							"value": "wotemo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注销账户",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/remove/account?username=wotemo&password=wotemo&email=iswotemo@gmail.com&codeId=de359db1-b7c9-4a62-8317-9f4c2463e720&code=008547",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"remove",
+						"account"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wotemo"
+						},
+						{
+							"key": "password",
+							"value": "wotemo"
+						},
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						},
+						{
+							"key": "codeId",
+							"value": "de359db1-b7c9-4a62-8317-9f4c2463e720"
+						},
+						{
+							"key": "code",
+							"value": "008547"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

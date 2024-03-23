@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "51f8f52d-71ee-470a-afe0-50c7dab5d779",
+		"name": "文件相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33030655"
+	},
+	"item": [
+		{
+			"name": "上传文件",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1eed85f9-21c3-4940-98c5-651f93d1b8f1"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

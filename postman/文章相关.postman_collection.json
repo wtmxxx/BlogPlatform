@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "20717474-0afe-4436-b877-666bd4d1a29c",
+		"name": "文章相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33030655"
+	},
+	"item": [
+		{
+			"name": "获取最新文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/articles?skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"articles"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户点赞",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/likes?obj=user&id=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"likes"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "user"
+						},
+						{
+							"key": "id",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取文章点赞",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/likes?obj=article&id=6e7e19b7-51ce-488c-a9d6-22fe6498df4c&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"likes"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "article"
+						},
+						{
+							"key": "id",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取点赞数量",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/likes/count?obj=article&id=6e7e19b7-51ce-488c-a9d6-22fe6498df4c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"likes",
+						"count"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "article"
+						},
+						{
+							"key": "id",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "对文章(取消)点赞",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/set/like?userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&articleId=6e7e19b7-51ce-488c-a9d6-22fe6498df4c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"set",
+						"like"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "articleId",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户是否点赞",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/like?userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&articleId=6e7e19b7-51ce-488c-a9d6-22fe6498df4c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"like"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "articleId",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改文章信息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/update/article?id=6e7e19b7-51ce-488c-a9d6-22fe6498df4c&dislike=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"article"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						},
+						{
+							"key": "title",
+							"value": "我的第一个SpringBoot项目",
+							"disabled": true
+						},
+						{
+							"key": "content",
+							"value": "我使用Java Springboot写了一个博客网站",
+							"disabled": true
+						},
+						{
+							"key": "dislike",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发表一篇文章",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/set/article?userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&title=volatile 关键字&content=按照我们的分析，当我们把 volatileThread 线程启动起来以后，那么 volatileThread 线程开始执行。在 volatileThread 线程的 run 方法中，线程休眠 1s，休眠一秒以后那么 flag 的值应该为true，此时我们在主线程中不停的获取 flag 的值。发现前面释放 false，后面是 true信息，那么这是为什么呢？要想知道原因，那么我们就需要学习一下 JMM。",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"set",
+						"article"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "title",
+							"value": "volatile 关键字"
+						},
+						{
+							"key": "content",
+							"value": "按照我们的分析，当我们把 volatileThread 线程启动起来以后，那么 volatileThread 线程开始执行。在 volatileThread 线程的 run 方法中，线程休眠 1s，休眠一秒以后那么 flag 的值应该为true，此时我们在主线程中不停的获取 flag 的值。发现前面释放 false，后面是 true信息，那么这是为什么呢？要想知道原因，那么我们就需要学习一下 JMM。"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取指定ID文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/article?id=1674e3c1-e094-4c03-bd89-4854f39e7299",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"article"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1674e3c1-e094-4c03-bd89-4854f39e7299"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取指定用户文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/userArticles?userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"userArticles"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除指定文章",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/delete/article?id=6e7e19b7-51ce-488c-a9d6-22fe6498df4c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"delete",
+						"article"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

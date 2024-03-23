@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "f544fc3f-7eb2-4adc-b98a-ab63621651cd",
+		"name": "用户相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33030655"
+	},
+	"item": [
+		{
+			"name": "获取用户必要信息",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/get/user?username=wotemo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "f357ecff-553a-4c32-885c-1123a3d70be7",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "wotemo"
+						},
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户地址",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/address?id=030fddad-23f6-48b2-a004-509a4f39ef81",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"address"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "030fddad-23f6-48b2-a004-509a4f39ef81"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户基本信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/userinfo?id=f357ecff-553a-4c32-885c-1123a3d70be7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"userinfo"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "f357ecff-553a-4c32-885c-1123a3d70be7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户基本信息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/update/userinfo?userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&nickname=Wotemooo&birthday=2020-03-18&profile=不理解",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"userinfo"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "nickname",
+							"value": "Wotemooo"
+						},
+						{
+							"key": "avatar",
+							"value": "https://img.wotemo.com/blog-platform/default_avatar.png",
+							"disabled": true
+						},
+						{
+							"key": "birthday",
+							"value": "2020-03-18"
+						},
+						{
+							"key": "profile",
+							"value": "不理解"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户地址",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/update/address?addressId=030fddad-23f6-48b2-a004-509a4f39ef81&province=湖北省&city=武汉市&fullAddress=湖北省武汉市武昌区",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"address"
+					],
+					"query": [
+						{
+							"key": "addressId",
+							"value": "030fddad-23f6-48b2-a004-509a4f39ef81"
+						},
+						{
+							"key": "province",
+							"value": "湖北省"
+						},
+						{
+							"key": "city",
+							"value": "武汉市"
+						},
+						{
+							"key": "fullAddress",
+							"value": "湖北省武汉市武昌区"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设置(取消)管理员",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/set/administrator?id=d3d6230e-7c2b-4f71-9f9e-bc30adf949b9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"set",
+						"administrator"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "d3d6230e-7c2b-4f71-9f9e-bc30adf949b9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户必要信息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/update/user?id=f357ecff-553a-4c32-885c-1123a3d70be7&username=roots&email=iswotemo@gmail.com&codeId=996aec52-8fdd-459c-98ff-84ab6272ab11&code=685713",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "f357ecff-553a-4c32-885c-1123a3d70be7"
+						},
+						{
+							"key": "username",
+							"value": "roots"
+						},
+						{
+							"key": "email",
+							"value": "iswotemo@gmail.com"
+						},
+						{
+							"key": "codeId",
+							"value": "996aec52-8fdd-459c-98ff-84ab6272ab11"
+						},
+						{
+							"key": "code",
+							"value": "685713"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog_platform
-    username: root
-    password: 1005
+    username: 
+    password: 
   task:
     execution:
       thread-name-prefix: UserExecutor-
@@ -20,14 +20,14 @@ spring:
     redis:
       host: localhost
       port: 6379
-      password: 1005
+      password: 
       database: 0
   mail:
     host: smtp.qq.com
     # smtp的指定端口 使用465要将protocol改为smtps
     port: 465
-    username: wotemo@qq.com
-    password: sievcqsdeekwbddh
+    username: # 你的邮箱
+    password: # 密钥
     # 协议 默认就是smtp
     protocol: smtps
     # 编码格式 默认就是utf-8
@@ -36,7 +36,7 @@ spring:
     properties:
       mail:
         smtp:
-          from: wotemo@qq.com
+          from: # 你的邮箱
           ssl:
             enable: true
 
@@ -52,9 +52,9 @@ jwt:
 
 leancloud:
   initialization:
-    app-id: XvzTrvFOLxE5Zpq34jcDvh7A-MdYXbMMI
-    app-key: Xub8WClpXuytWh5eBAVWrqx1
-    server-url: https://bpserver.wotemo.com
+    app-id: 
+    app-key: 
+    server-url: 
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug

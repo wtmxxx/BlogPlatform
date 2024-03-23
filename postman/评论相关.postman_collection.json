@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "d1fc7990-c02e-4a69-a3a7-15dfddd63a0f",
+		"name": "评论相关",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33030655"
+	},
+	"item": [
+		{
+			"name": "获取文章评论",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/comments?obj=article&id=6e7e19b7-51ce-488c-a9d6-22fe6498df4c&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "article"
+						},
+						{
+							"key": "id",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取评论回复",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/comments?obj=comment&id=f450d709-5ec2-46d2-ba20-7355ef3aa923&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "comment"
+						},
+						{
+							"key": "id",
+							"value": "f450d709-5ec2-46d2-ba20-7355ef3aa923"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户评论",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/comments?obj=user&id=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&skip=0&num=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "obj",
+							"value": "user"
+						},
+						{
+							"key": "id",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "num",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取指定ID评论",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get/comment?id=cd2ede7d-4ece-48e2-9df0-699165a7c593",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "cd2ede7d-4ece-48e2-9df0-699165a7c593"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发表一个评论",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMzU3ZWNmZi01NTNhLTRjMzItODg1Yy0xMTIzYTNkNzBiZTciLCJ1c2VybmFtZSI6InJvb3QiLCJleHAiOjE3MTA2MjQ1NTIsImlhdCI6MTcxMDU4MTM1MiwiaXNzIjoiQmxvZ1BsYXRmb3JtIn0.C5WK0asqBD8c2E56lmWXNW9iK7KM33OzbrMAeuzKhAc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/set/comment?articleId=6e7e19b7-51ce-488c-a9d6-22fe6498df4c&userId=e7a33903-2eb6-4036-a7a4-76e2c8b6dc96&content=非常不错&parentId=f450d709-5ec2-46d2-ba20-7355ef3aa923",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"set",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "articleId",
+							"value": "6e7e19b7-51ce-488c-a9d6-22fe6498df4c"
+						},
+						{
+							"key": "userId",
+							"value": "e7a33903-2eb6-4036-a7a4-76e2c8b6dc96"
+						},
+						{
+							"key": "content",
+							"value": "非常不错"
+						},
+						{
+							"key": "parentId",
+							"value": "f450d709-5ec2-46d2-ba20-7355ef3aa923"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除指定ID评论",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlN2EzMzkwMy0yZWI2LTQwMzYtYTdhNC03NmUyYzhiNmRjOTYiLCJ1c2VybmFtZSI6IndvdGVtbyIsImV4cCI6MTcxMDU1NjY1NSwiaWF0IjoxNzEwNTEzNDU1LCJpc3MiOiJCbG9nUGxhdGZvcm0ifQ.mtf_ftkGxp34Pj5YsFOjMtHWS4bduZm2bbD6KpLn4NE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/delete/comment?id=51546705-a1f9-4e87-911d-526c04a8c147",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"delete",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "51546705-a1f9-4e87-911d-526c04a8c147"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
